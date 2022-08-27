@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react';
 import SearchBar from '../components/SearchBar'
 import Modal from "../components/Modal"
+import Message, { message } from 'antd'
 
 const Home = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,6 +29,24 @@ const Home = (props) => {
     }
   }, [searchTerm])
 
+  const createPost = async () => {
+    message.loading({ content: "Creating Post...", key: "create" })
+    const response = await fetch("/api/post/", {
+      method: "POST",
+      body: JSON.stringify({
+        userId,
+        title,
+        body: postBody
+      })
+    })
+    const data = await response.json()
+    if (data) {
+      message.success({ content: "Post created", key: "create", duration: 2 })
+      setTitle(""), setPostBody(""), setUserId(1)
+      setShowModal(false)
+    }
+
+  }
   return (
     <div className="">
       <Head>
@@ -76,7 +95,7 @@ const Home = (props) => {
               />
             </div>
             <div className="w-full flex justify-center gap-6 mt-2">
-              <button className='bg-green-500 w-24 h-10 text-white text-lg font-semibold rounded-lg'>Create</button>
+              <button className='bg-green-500 w-24 h-10 text-white text-lg font-semibold rounded-lg' onClick={createPost}>Create</button>
               <button className='bg-red-500 w-24 h-10 text-white text-lg font-semibold rounded-lg' onClick={() => setShowModal(false)}>Cancel</button>
             </div>
           </div>
