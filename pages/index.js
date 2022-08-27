@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react';
 import SearchBar from '../components/SearchBar'
 import Modal from "../components/Modal"
-import Message, { message } from 'antd'
+import { message } from 'antd'
 
 const Home = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -54,17 +54,17 @@ const Home = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="flex min-w-full min-h-full items-center justify-center ">
+        <div className="flex min-w-full min-h-full items-center justify-center bg-indigo-100 ">
           <div className="min-h-screen h-screen max-w-screen-md flex flex-1 flex-col gap-8 pt-10 items-center">
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} maxPosts={props.posts.length} />
-            <button className='bg-green-200 w-72 h-16 rounded-lg border-2 border-green-800 shadow-green-200 shadow-sm font-bold text-xl' onClick={() => setShowModal(true)}>Create Post</button>
-            <div className="min-w-full h-full overflow-y-scroll scrollbar-hide flex flex-wrap gap-10 p-2 items-center justify-center border-1 border-gray-400 rounded-lg shadow-lg">
+            <button className='w-72 h-16 rounded-lg bg-indigo-500 text-white shadow-slate-800 shadow-sm font-bold text-xl' onClick={() => setShowModal(true)}>Create Post</button>
+            <div className="min-w-full h-full overflow-y-scroll scrollbar-hide flex flex-wrap gap-10 p-2 items-center justify-center border-1 border-gray-400 rounded-lg shadow-lg box-border pt-6 border-indigo-500 border">
               {posts && posts?.map(post => {
-                return <div className="min-h-fit h-32 border-2 w-full max-w-xs border-gray-400 rounded-lg cursor-pointer p-2 shadow-lg" key={post.id}>
+                return <div className="min-h-fit h-32 border-2 w-full max-w-xs border-indigo-400 rounded-lg cursor-pointer p-2 shadow-lg" key={post.id}>
                   <Link href={`/post/${post.id}`}>
-                    <div className="flex flex-col gap-4 items-center">
-                      <p>Id : {post.id}</p>
-                      <p>Title: {post.title}</p>
+                    <div className="flex flex-col gap-2 items-center">
+                      <p><b>Post Id:</b><i> {post.id}</i></p>
+                      <p className='self-start'><b>Title:</b><i> {post.title}</i></p>
                     </div>
                   </Link>
                 </div>

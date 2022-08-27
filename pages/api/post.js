@@ -13,8 +13,22 @@ export default async function handler(req, res) {
     }
     ).then(res => res.json())
     res.status(200).json("Ok")
-  } else {
-    res.status(200).json({ name: "John Doe" });
-
+  } else if (method === "PUT") {
+    const postId = JSON.parse(body).id
+    await fetch(
+      `https://jsonplaceholder.typicode.com/posts/${postId}`, {
+      method: method,
+      body: body,
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      }
+    }
+    ).then(() => res.status(200).send("Ok"))
+  }
+  else if (method === "DELETE") {
+    const postId = JSON.parse(body).id
+    await fetch(
+      `https://jsonplaceholder.typicode.com/posts/${postId}`
+    ).then(() => res.status(200).send("Ok"))
   }
 }
