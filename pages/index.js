@@ -105,7 +105,7 @@ const Home = (props) => {
   )
 }
 export const getStaticProps = async () => {
-  const posts = await fetch("https://jsonplaceholder.typicode.com/posts").then(
+  const posts = await fetch("https://jsonplaceholder.typicode.com/posts?_start=0&_limit=20").then(
     res => res.json()
   )
   return {

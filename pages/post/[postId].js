@@ -49,7 +49,7 @@ const Post = (props) => {
         <div className="min-w-full min-h-screen flex flex-col items-center box-border pt-10 pb-0 bg-indigo-100">
             <h1 className="text-lg font-bold">Post: {postId}</h1>
             {props.post ? (
-                <div className="w-9/12 min-h-48 min-w-72 border-1 border-indigo-300 rounded-md shadow-lg shadow-indigo-300 flex flex-col justify-center items-center pt-10 pb-4">
+                <div className="w-9/12 min-h-48 min-w-72 border border-indigo-700 rounded-md shadow-lg shadow-indigo-300 flex flex-col justify-center items-center pt-10 pb-4">
                     <div className="box-border pl-10 pr-10 h-fit">
                         <h1 className="text-xl">Title: <i>{postTitle}</i></h1>
                         <p className="text-xl"><strong>Post:</strong> <i>{postBody}</i></p>
